@@ -432,7 +432,10 @@ void londing_eeprom_data(void) {
 }
 
 /* qmk process record */
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
+    if (!process_record_user(keycode, record)) {
+        return false;
+    }
     no_act_time = 0;
     switch (keycode) {
         case RF_DFU:

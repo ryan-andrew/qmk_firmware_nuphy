@@ -398,8 +398,11 @@ void m_power_on_dial_sw_scan(void)
 /**
  * @brief  qmk process record
  */
-bool process_record_user(uint16_t keycode, keyrecord_t *record)
+bool process_record_kb(uint16_t keycode, keyrecord_t *record)
 {
+    if (!process_record_user(keycode, record)) {
+        return false;
+    }
     switch (keycode) {
         case RF_DFU:
             if (record->event.pressed) {
